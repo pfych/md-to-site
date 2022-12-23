@@ -52,3 +52,9 @@ This site can be deployed using the serverless framework, with standard traffic 
 
 - [Setting up AWS](serverless/config.md)
 - [Deploy to AWS](serverless/deploy.md)
+
+## Guides
+Bellow are some basic guides which should make it easier to understand and expand the codebase.
+
+- [Extending templates](guides/extending-templates.md)
+- [Adding RSS](guides/adding-rss.md)
