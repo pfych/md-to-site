@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>md-to-site - $title$</title>
+  <link href="/bundle.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta property="og:site_name" content="md-to-site" />
+  <meta name="og:title" content="$title$" />
+  <meta name="og:type" content="article" />
+
+  <!-- -->
+  $if(attribution)$
+  <meta name="twitter:creator" content="@$attribution$" />
+  $endif$
+  <!-- -->
+  $if(image)$
+  <meta name="og:image" content="$image$" />
+  <meta name="twitter:image" content="$image$" />
+  <meta name="twitter:summary_large_image" content="$image$" />
+  <meta name="twitter:card" content="summary_large_image" />
+  $if(alt)$
+  <meta name="twitter:image:alt" content="$alt$" />
+  $endif$
+  <!-- -->
+  $else$
+  <meta name="twitter:card" content="summary" />
+  $endif$
+  <!-- -->
+  $if(summary)$
+  <meta name="og:description" content="$summary$" />
+  <meta name="og:image" content="/favicon.png" />
+  $endif$
+</head>
+<body>
+<div class="container">
+  <h1><a href="/">md-to-site</a></h1>
+  <h2>$title$</h2>
+  <article class="article">$body$</article>
+  <hr />
+  <p>Created by <a href="https://pfy.ch" target="_blank">pfy.ch</a></p>
+  <p>Part of this project is a fork of <a href="https://github.com/Baseline-JS/baseline-webpage" target="_blank">Baseline Webpage</a></p>
+</div>
+</body>
+</html>

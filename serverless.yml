@@ -1,0 +1,108 @@
+service: md-to-site
+
+frameworkVersion: ">=2.0.0 <4.0.0"
+
+plugins:
+  - serverless-s3-sync
+  - serverless-cloudfront-invalidate
+
+custom:
+  s3Bucket: ${param:profile}-${opt:stage}-md-to-site-${param:bucketId}
+  s3Sync:
+    - bucketName: ${self:custom.s3Bucket}
+      localDir: build/
+  cloudfrontInvalidate:
+      - distributionIdKey: "CDNDistributionId"
+        items:
+          - "/*"
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  profile: ${param:profile}
+  region: ${opt:region}
+  stage: ${opt:stage}
+
+resources:
+  Description: ${param:profile} ${opt:stage}
+  Resources:
+    WebsiteS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.s3Bucket}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+
+    WebsiteS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: WebsiteS3Bucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+                - s3:GetObject
+              Resource: arn:aws:s3:::${self:custom.s3Bucket}/*
+
+    WebsiteCloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Enabled: true
+          HttpVersion: http2
+          Origins:
+            - DomainName: ${self:custom.s3Bucket}.s3.${opt:region}.amazonaws.com
+              Id: ${self:custom.s3Bucket}.s3.${opt:region}.amazonaws.com
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: https-only
+          DefaultRootObject: index.html
+          CustomErrorResponses:
+            - ErrorCode: 404
+              ResponseCode: 200
+              ResponsePagePath: /404.html
+          DefaultCacheBehavior:
+            AllowedMethods:
+              - GET
+              - HEAD
+            CachedMethods:
+              - HEAD
+              - GET
+            Compress: true
+            DefaultTTL: 1800
+            MinTTL: 0
+            TargetOriginId: ${self:custom.s3Bucket}.s3.${opt:region}.amazonaws.com
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: none
+            ViewerProtocolPolicy: redirect-to-https
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+
+  Outputs:
+    WebsiteUrl:
+      Description: Cloudfront site URL
+      Value:
+        !Join
+          - '://'
+          - - "https"
+            - "Fn::GetAtt": [WebsiteCloudFrontDistribution, DomainName]
+    WebsiteCloudFrontDistribution:
+      Description: Cloudfront site URL
+      Value:
+        "Fn::GetAtt": [WebsiteCloudFrontDistribution, DomainName]
+    CDNDistributionId:
+      Description: CDN distribution id.
+      Value:
+        Ref: WebsiteCloudFrontDistribution

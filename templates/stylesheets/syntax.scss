@@ -1,0 +1,75 @@
+.code,
+pre {
+  font-family: monospace;
+  font-size: 14px;
+  background: #fafafa;
+}
+
+pre {
+  margin-top: unset;
+  margin-bottom: 12px;
+  padding: 8px;
+  overflow: auto;
+  background: #fafafa;
+}
+
+.sourceCode {
+  // KeyWord
+  .kw {
+    color: #268bd2;
+  }
+
+  // DataType
+  .dt {
+    color: #268bd2;
+  }
+
+  // DecVal (decimal value), BaseN, Float
+  .dv,
+  .bn,
+  .fl {
+    color: #d33682;
+  }
+
+  // Char
+  .ch {
+    color: #dc322f;
+  }
+
+  // String
+  .st {
+    color: #2aa198;
+  }
+
+  // Comment
+  .co {
+    color: #93a1a1;
+  }
+
+  // Other
+  .ot {
+    color: #a57800;
+  }
+
+  // Alert
+  .al {
+    color: #cb4b16;
+    font-weight: bold;
+  }
+
+  // Function
+  .fu {
+    color: #268bd2;
+  }
+
+  // Variable
+  .va {
+    color: var(--colour-text);
+  }
+
+  // Error
+  .er {
+    color: #d30102;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,30 @@
+@import "stylesheets/syntax";
+
+body {
+  margin: unset;
+  padding: unset;
+  background-color: #fff;
+
+  .container {
+    max-width: 70ch;
+    margin: auto;
+    padding: 0 16px;
+    overflow: hidden;
+  }
+
+  p,
+  td,
+  a,
+  .rss,
+  h1,
+  h2,
+  blockquote::before,
+  figcaption,
+  pre,
+  li,
+  h3,
+  .crumb {
+    color: #000;
+    font-family: sans-serif;
+  }
+}

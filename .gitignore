@@ -1,0 +1,8 @@
+build
+.idea
+.sass-cache
+node_modules
+.serverless
+out
+.obsidian
+.esbuild
