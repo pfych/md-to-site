@@ -48,7 +48,7 @@ Included in this document is a breakdown of what each of the files under `./src/
 
 
 ## Serverless Deployment
-This site can be deployed using the serverless framework
+This site can be deployed using the serverless framework, with standard traffic this deployment will be completely within Amazons free tier.
 
 - [Setting up AWS](serverless/config.md)
 - [Deploy to AWS](serverless/deploy.md)
