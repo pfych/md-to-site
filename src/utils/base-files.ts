@@ -5,6 +5,7 @@ import { execPromise } from './exec-promise';
 
 const baseFiles: { filename?: string; from?: string; to: string }[] = [
   { filename: 'favicon.ico', from: 'templates', to: 'build' },
+  { filename: '404.html', from: 'templates', to: 'build' },
 ];
 
 export const moveBaseFiles = async () => {
