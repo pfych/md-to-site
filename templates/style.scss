@@ -18,13 +18,29 @@ body {
   .rss,
   h1,
   h2,
+  h3,
+  h4,
+  h5,
   blockquote::before,
   figcaption,
   pre,
   li,
   h3,
-  .crumb {
+  td,
+  th {
     color: #000;
     font-family: sans-serif;
+  }
+
+  table {
+    td,
+    th {
+      text-align: left;
+      padding: 2px 4px;
+    }
+
+    tr:nth-of-type(2n) {
+      background: #fafafa;
+    }
   }
 }
