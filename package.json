@@ -10,12 +10,12 @@
     "compile": "esbuild src/build.ts --platform=node --bundle --external:esbuild --sourcemap=both --outfile=out/build.js",
     "build": "npm run compile && node --enable-source-maps out/build.js && rm -r out",
     "serve": "http-server build/",
-    "deploy:dev": "export AWS_PROFILE=md-to-site && npx serverless deploy --verbose --stage dev --region ap-southeast-2 --param=\"profile=md-to-site\" --param=\"bucketId=1\"",
-    "remove:dev": "export AWS_PROFILE=md-to-site && npx serverless remove --stage dev --region ap-southeast-2 --param=\"profile=md-to-site\" --param=\"bucketId=1\"",
-    "deploy:prod": "export AWS_PROFILE=md-to-site && npx serverless deploy --verbose --stage prod --region ap-southeast-2 --param=\"profile=md-to-site\" --param=\"bucketId=1\"",
-    "remove:prod": "export AWS_PROFILE=md-to-site && npx serverless remove --stage prod --region ap-southeast-2 --param=\"profile=md-to-site\" --param=\"bucketId=1\"",
-    "info:dev": "export AWS_PROFILE=md-to-site && npx serverless info --verbose --stage dev --region ap-southeast-2 --param=\"profile=md-to-site\" --param=\"bucketId=1\"",
-    "info:prod": "export AWS_PROFILE=md-to-site && npx serverless info --verbose --stage prod --region ap-southeast-2 --param=\"profile=md-to-site\" --param=\"bucketId=1\""
+    "deploy:dev": "export AWS_PROFILE=default && npx serverless deploy --verbose --stage dev --region ap-southeast-2 --param=\"profile=default\" --param=\"bucketId=1\"",
+    "remove:dev": "export AWS_PROFILE=default && npx serverless remove --stage dev --region ap-southeast-2 --param=\"profile=default\" --param=\"bucketId=1\"",
+    "deploy:prod": "export AWS_PROFILE=default && npx serverless deploy --verbose --stage prod --region ap-southeast-2 --param=\"profile=default\" --param=\"bucketId=1\"",
+    "remove:prod": "export AWS_PROFILE=default && npx serverless remove --stage prod --region ap-southeast-2 --param=\"profile=default\" --param=\"bucketId=1\"",
+    "info:dev": "export AWS_PROFILE=default && npx serverless info --verbose --stage dev --region ap-southeast-2 --param=\"profile=default\" --param=\"bucketId=1\"",
+    "info:prod": "export AWS_PROFILE=default && npx serverless info --verbose --stage prod --region ap-southeast-2 --param=\"profile=default\" --param=\"bucketId=1\""
   },
   "devDependencies": {
     "@types/node": "17.0.18",
