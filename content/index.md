@@ -10,9 +10,9 @@ This project uses a collection of scripts to generate a static site from a direc
 git clone git@github.com:pfych/md-to-site.git
 cd md-to-site
 npm install
-npm run serve
-npm run deploy:dev
-npm run deploy:prod
+npm run build && npm run serve
+npm run build && npm run deploy:dev
+npm run build && npm run deploy:prod
 ```
 
 A more in-depth beginner friendly guide is [available here](guides/getting-started.md).
